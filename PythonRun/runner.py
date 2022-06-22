@@ -1,13 +1,18 @@
+import sys
+
 class Runner:
     def __init__(self, tokenized):
         self.tokenized = tokenized;
         self.variables = {}
         self.line = 1;
+    def giveError(self, message):
+        print(message)
+        sys.exit(0)
     def getVariable(self, var):
         if( var in self.variables):
             return self.variables[var]
         else:
-            raise Exception("" + str(self.line) + "째 줄에 오류 발생! 변수 " + var + " 은 선언되지 않았습니다!")
+            self.giveError("실행중 에러: " + str(self.line) + "째 줄에 오류 발생! 변수 " + var + " 은 선언되지 않았습니다!\n")
 
         return self.variables[var]
 
